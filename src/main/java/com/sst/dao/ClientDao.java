@@ -11,7 +11,7 @@ public interface ClientDao {
 
 	public List getClient();
 
-	public void getClientById(int id);
+	public Client getClientById(int id);
 
 	public Client verifyClient(String name, String password);
 
