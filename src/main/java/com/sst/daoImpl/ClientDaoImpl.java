@@ -16,18 +16,20 @@ public class ClientDaoImpl implements ClientDao {
 	@Autowired
 	SessionFactory sessionFactory;
 	Client client;
+	Transaction transaction = null;
 
 	public boolean insert(Client client) {
 		Session session = null;
 		boolean status = true;
 		try {
 			session = sessionFactory.openSession();
-			Transaction transaction = session.beginTransaction();
+			transaction = session.beginTransaction();
 			session.saveOrUpdate(client);
 			transaction.commit();
 
 		} catch (Exception exception) {
 			System.out.println(exception.getMessage());
+			transaction.rollback();
 		} finally {
 			if (session != null) {
 				session.close();
@@ -41,11 +43,12 @@ public class ClientDaoImpl implements ClientDao {
 		boolean status = true;
 		try {
 			session = sessionFactory.openSession();
-			Transaction transaction = session.beginTransaction();
+			transaction = session.beginTransaction();
 			session.saveOrUpdate(client);
 			transaction.commit();
 		} catch (Exception exception) {
 			System.out.println(exception.getMessage());
+			transaction.rollback();
 		} finally {
 			if (session != null)
 				session.close();
