@@ -1,109 +1,102 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@taglib uri="http://www.springframework.org/tags/form" prefix="s" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <title>Member Registration Form</title>
+<link rel="stylesheet" href="<c:url value="/resources/css/MReg.css"/>">
+
+<!------ Include the above in your HEAD tag ---------->
+
 </head>
 <body>
-	<script>
-		function validateform() {
-			var filter = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-			var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
-			var name = document.Name.name.value;
-			var email_id = document.Name.email_id.value;
-			var password = document.Name.password.value;
-			var contact_no = document.Name.contact_no.value;
-			var city = document.Name.city.value;
-			var state = document.Name.state.value;
-			var country = document.Name.country.value;
 
-			if (name == null || name == "") {
-				alert("Name can't be blank");
-				return false;
-			} else if (!name.match(/^[a-zA-Z]+$/)) {
-				alert("Only alphabets are allowed in Name");
-				return false;
-			} else if (email_id == null || email_id == "") {
-				alert("Email Id Field could not be blank");
-				return false;
-			} else if (!filter.test(email_id)) {
-				alert("Please provide a valid email address");
-				return false;
-			} else if (password == null || password == "") {
-				alert("Password Field could not be blank");
-				return false;
-			} else if (!passw.test(password)) {
-				alert("Password must be of 6 to 20 characters  which contain at least one numeric digit, one uppercase ,one lowercase letter");
-				return false;
-			} else if (contact_no == "" || isNaN(contact_no)
-					|| contact_no.length != 10) {
-				alert("Contact Number Field Can't be Blank/Please Provide Proper Contact Number");
-				return false;
-			} else if (city == null || city == "") {
-				alert("City Field could not be blank");
-				return false;
-			} else if (!city.match(/^[a-zA-Z]+$/)) {
-				alert("Only alphabets are allowed in City");
-				return false;
-			} else if (state == null || state == "") {
-				alert("State Field could not be blank");
-				return false;
-			} else if (!state.match(/^[a-zA-Z]+$/)) {
-				alert("Only alphabets are allowed in State");
-				return false;
-			} else if (country == null || country == "") {
-				alert("Country Field could not be blank");
-				return false;
-			} else if (!country.match(/^[a-zA-Z]+$/)) {
-				alert("Only alphabets are allowed in Country");
-				return false;
-			}
-		}
-	</script>
-	<br>
-	<br>
-	<h1 align="center">Member Registration Form</h1>
-	<form name="Name" action="MReg" method="post"
-		onsubmit="return validateform()">
-		
-		<table align="center">
-			<tr>
-				<td>Name:</td>
-				<td><input type="text" name="name"></td>
-			</tr>
-			<tr>
-				<td>Email Id:</td>
-				<td><input type="text" name="email_id"></td>
-			</tr>
-			<tr>
-				<td>Password:</td>
-				<td><input type="password" name="password"></td>
-			</tr>
-			<tr>
-				<td>Contact No.:</td>
-				<td><input type="text" name="contact_no"></td>
-			</tr>
-			<tr>
-				<td>City:</td>
-				<td><input type="text" name="city"></td>
-			</tr>
-			<tr>
-				<td>State:</td>
-				<td><input type="text" name="state"></td>
-			</tr>
-			<tr>
-				<td>Country:</td>
-				<td><input type="text" name="country"></td>
-			</tr>
-			<br>
-			<tr>
-				<td colspan="2" align="center"><input type="submit"
-					value="Register" /></td>
-			</tr>
-		</table>
-		<br> <br> <br> <br>
-		<br>
-	</form>
+	<div class="container">
+            <form class="form-horizontal" role="form">
+                <h2>Registration</h2>
+                <div class="form-group">
+                    <label for="firstName" class="col-sm-3 control-label">First Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="firstName" placeholder="First Name" class="form-control" autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="lastName" placeholder="Last Name" class="form-control" autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-sm-3 control-label">Email* </label>
+                    <div class="col-sm-9">
+                        <input type="email" id="email" placeholder="Email" class="form-control" name= "email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-3 control-label">Password*</label>
+                    <div class="col-sm-9">
+                        <input type="password" id="password" placeholder="Password" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-3 control-label">Confirm Password*</label>
+                    <div class="col-sm-9">
+                        <input type="password" id="password" placeholder="Password" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="birthDate" class="col-sm-3 control-label">Date of Birth*</label>
+                    <div class="col-sm-9">
+                        <input type="date" id="birthDate" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phoneNumber" class="col-sm-3 control-label">Phone number </label>
+                    <div class="col-sm-9">
+                        <input type="phoneNumber" id="phoneNumber" placeholder="Phone number" class="form-control">
+                        <span class="help-block">Your phone number won't be disclosed anywhere </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label for="Height" class="col-sm-3 control-label">Height* </label>
+                    <div class="col-sm-9">
+                        <input type="number" id="height" placeholder="Please write your height in centimetres" class="form-control">
+                    </div>
+                </div>
+                 <div class="form-group">
+                        <label for="weight" class="col-sm-3 control-label">Weight* </label>
+                    <div class="col-sm-9">
+                        <input type="number" id="weight" placeholder="Please write your weight in kilograms" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Gender</label>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label class="radio-inline">
+                                    <input type="radio" id="femaleRadio" value="Female">Female
+                                </label>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="radio-inline">
+                                    <input type="radio" id="maleRadio" value="Male">Male
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- /.form-group -->
+                <div class="form-group">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <span class="help-block">*Required fields</span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Register</button>
+            </form> 
+        </div> 
+	
 
 </body>
+
 </html>
